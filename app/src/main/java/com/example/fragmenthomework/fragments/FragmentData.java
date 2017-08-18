@@ -1,6 +1,8 @@
 package com.example.fragmenthomework.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ public class FragmentData extends Fragment {
     ImageView image;
 
     int pageNumber;
+    static int page;
 
 
     //Constructor
@@ -32,11 +35,19 @@ public class FragmentData extends Fragment {
 
     //Functions
     public static FragmentData newInstance(int position) {
+        Log.d(TAG, "newInstance: " + position);
+        page = position;
         FragmentData fragment = new FragmentData();
         Bundle args = new Bundle();
         args.putInt(ARGUMENT_PAGE_NUMBER, position);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.d(TAG, "onAttach: " + page);
     }
 
     @Override
@@ -74,10 +85,15 @@ public class FragmentData extends Fragment {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d(TAG, "onActivityCreated: " + pageNumber);
+    }
 
-        Log.d(TAG, "onPause: " + pageNumber);
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: " + pageNumber);
     }
 
     @Override
@@ -91,9 +107,32 @@ public class FragmentData extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause: " + pageNumber);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop: " + pageNumber);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "onDestroyView: " + pageNumber);
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
-
         Log.d(TAG, "onDestroy: " + pageNumber);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d(TAG, "onDetach: " + pageNumber);
     }
 }

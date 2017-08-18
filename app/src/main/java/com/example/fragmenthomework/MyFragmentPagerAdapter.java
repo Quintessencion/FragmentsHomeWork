@@ -3,6 +3,7 @@ package com.example.fragmenthomework;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 import com.example.fragmenthomework.fragments.FragmentData;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
@@ -17,6 +18,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     //Functions
     @Override
     public Fragment getItem(int position) {
+        Log.d("myLogs", "Adapter getItem: " + position);
         return FragmentData.newInstance(position);
     }
 
@@ -27,7 +29,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        switch(position){
+        switch (position) {
             case 0:
                 return "Time";
             case 1:
