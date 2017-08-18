@@ -1,14 +1,11 @@
 package com.example.fragmenthomework.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.fragmenthomework.R;
@@ -45,15 +42,18 @@ public class FragmentData extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: " + pageNumber);
+
         if (getArguments() != null) {
             pageNumber = getArguments().getInt(ARGUMENT_PAGE_NUMBER);
         }
+
+        Log.d(TAG, "onCreate: " + pageNumber);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: " + pageNumber);
+
         View view = inflater.inflate(R.layout.fragment_fragment_data, null);
 
         switch (pageNumber) {
@@ -76,6 +76,7 @@ public class FragmentData extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+
         Log.d(TAG, "onPause: " + pageNumber);
     }
 
@@ -83,6 +84,7 @@ public class FragmentData extends Fragment {
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: " + pageNumber);
+
         if (textData != null) {
             textData.setText(sdf.format(System.currentTimeMillis()));
         }
@@ -91,6 +93,7 @@ public class FragmentData extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
         Log.d(TAG, "onDestroy: " + pageNumber);
     }
 }
